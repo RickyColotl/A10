@@ -3,20 +3,17 @@ window.onload = function() {
     if (!cookieValue) {
         var userInput = prompt("Please enter a value for the cookie:", "");
         if (userInput != null && userInput !== "") {
-            setCookie("userCookie", userInput, 1);
+            setCookie("userCookie", userInput);
         }
     }
-    console.log(cookieValue);
     displayCookie();
 };
-
-function setCookie(name, value, days) {
+function setCookie(name, value) {
     var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-    }
+    var date = new Date();
+    date.setTime(date.getTime() + (5 * 60 * 1000)); // 5 minutes
+    expires = "; expires=" + date.toUTCString();
+
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
